@@ -7,7 +7,7 @@ import { useUser } from '@clerk/clerk-react';
 import emptyCart from "../assets/empty-cart.png"
 import { useNavigate } from 'react-router-dom';
 
-const Cart = ({ cartItem, setCartItem, location }) => {
+const Cart = ({ cartItem, setCartItem, location, getLocation }) => {
     const { user } = useUser()
     const navigate = useNavigate()
 
@@ -72,7 +72,7 @@ const Cart = ({ cartItem, setCartItem, location }) => {
                         </div>
 
                         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-20'>
-                            <div className='bg-gray-100  rounded-md p-4 md:p-7 mt-4 space-y-2 '>
+                            <div className='bg-gray-100 rounded-md p-4 md:p-7 mt-4 space-y-2 '>
                                 <h1 className='text-gray-800 font-bold text-xl'>Delivery Info</h1>
                                 <div className='space-y-2'>
                                     <div className='flex flex-col space-y-1'>
@@ -108,6 +108,14 @@ const Cart = ({ cartItem, setCartItem, location }) => {
                                     <button className='bg-red-500 text-white px-3 py-1 rounded-md mt-3 cursor-pointer'>Submit</button>
 
                                 </div>
+                                <div className='flex items-center justify-center w-full text-gray-700'>
+                                -------OR--------
+                                </div>
+                                <div className='flex justify-center'>
+                                <button className='bg-red-500 text-white px-3 py-2 rounded-md ' onClick={getLocation}>Detect Location</button> 
+                                </div>
+
+
                             </div>
                             <div className='bg-white border border-gray-100 shadow-xl rounded-md p-7 mt-4 space-y-2 h-max'>
                                 <h1 className='text-gray-800 font-bold text-xl'>Bill details</h1>

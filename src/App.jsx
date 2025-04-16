@@ -70,7 +70,7 @@ const App = () => {
           <Route path='/category/:category' element={<Search />}></Route>
           <Route path='/cart' element={
             <ProtectedRoutes user={user}>
-              <Cart cartItem={cartItem} setCartItem={setCartItem} location={location} />
+              <Cart cartItem={cartItem} setCartItem={setCartItem} location={location} getLocation={getLocation}/>
             </ProtectedRoutes>
           }></Route>
 
