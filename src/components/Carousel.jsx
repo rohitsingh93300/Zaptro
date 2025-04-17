@@ -46,16 +46,16 @@ const Carousel = ({ data }) => {
     prevArrow: <SamplePrevArrow to="prev" />,
   };
   return (
-    <Slider {...settings} className=' mx-auto bg-red-50 '>
+    <Slider {...settings} className=' mx-auto  '>
       {
         data.slice(0, 7).map((item, index) => {
-          return <div key={index} className='bg-red-50 -z-10'>
+          return <div key={index} className='bg-gradient-to-r  from-[#f5d2e8] to-[#f5e8e7] -z-10'>
             <div className=' flex flex-col md:flex-row gap-10 justify-center h-[600px] items-center my-20 md:my-0 px-4'>
 
               <div className='space-y-3 md:space-y-6'>
                 <h3 className='text-red-500 font-semibold font-sans'>Powering Your World with the Best in Electronics.</h3>
                 <h1 className='md:text-4xl text-xl font-bold uppercase line-clamp-2 md:line-clamp-3 md:w-[500px]'>{item.title}</h1>
-                <p className='md:w-[500px] line-clamp-3'>{item.description}</p>
+                <p className='md:w-[500px] line-clamp-3 text-gray-700'>{item.description}</p>
                 <button className='bg-red-500 text-white px-3 py-2 rounded-md cursor-pointer mt-2' onClick={() => navigate(`/products/${item.id}`)}>Shop Now</button>
               </div>
               <div className=''>

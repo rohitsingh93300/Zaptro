@@ -92,6 +92,7 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
     const handleCategoryChange = (e) => {
         if (category == "All") {
             setCategory("")
+            setOpenFilter(false)
             console.log(e.target.value);
 
         } else {
