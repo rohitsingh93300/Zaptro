@@ -1,31 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-const FilterSection = ({ data, search, setSearch, category, setCategory, brand, setBrand, priceRange, setPriceRange }) => {
+const FilterSection = ({ data, search, setSearch, category, setCategory, brand, setBrand, priceRange, setPriceRange,getUniqueData, categoryOnlyData, brandOnlyData, handleCategoryChange }) => {
 
-
-  const getUniqueData = (data, property) => {
-    let newVal = data.map((curElem) => {
-      return curElem[property];
-    });
-    newVal = ["All", ...new Set(newVal)]
-    return newVal
-  }
-
-  const categoryOnlyData = getUniqueData(data, "category")
-  const brandOnlyData = getUniqueData(data, "brand")
-
-
-  const handleCategoryChange = (e) => {
-    if (category == "All") {
-      setCategory("")
-      console.log(e.target.value);
-
-    } else {
-      console.log(e.target.value);
-
-      setCategory(e.target.value)
-    }
-  }
 
   return (
     <div className='bg-gray-100 mt-10 p-4 rounded-md h-max hidden md:block'>
@@ -39,7 +15,7 @@ const FilterSection = ({ data, search, setSearch, category, setCategory, brand, 
         {
           categoryOnlyData.map((item, index) => {
             return <div key={index} className='flex gap-2' >
-              <input type="checkbox" defaultChecked={item === "All" ? true : false} name={item} id="" checked={category === item} value={item} onChange={handleCategoryChange} />
+              <input type="checkbox"  name={item} id="" checked={category === item} value={item} onChange={handleCategoryChange} />
               <button className='cursor-pointer uppercase' value={item}>{item}</button>
             </div>
           })

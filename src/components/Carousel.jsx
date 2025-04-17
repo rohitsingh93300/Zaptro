@@ -18,8 +18,8 @@ const Carousel = ({ data }) => {
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <div onClick={onClick} className={`arrow ${className}`} >
-        <AiOutlineArrowLeft class="arrows" style={{ color: "white" }} />
+      <div onClick={onClick} className={`arrow ${className}`} style={{zIndex:3}}>
+        <AiOutlineArrowLeft class="arrows"  style={{ ...style, display: "block",borderRadius:"50px", background: "red", color: "white" , position:"absolute", padding:"2px", left: "50px"}}  onmouseover="this.style.backgroundColor='#555';"/>
       </div>
     )
   }
@@ -28,7 +28,7 @@ const Carousel = ({ data }) => {
     const { className, style, onClick } = props;
     return (
       <div onClick={onClick} className={`arrow ${className}`} >
-        <AiOutlineArrowRight class="arrows" style={{ color: "white" }} />
+        <AiOutlineArrowRight class="arrows"  style={{ ...style, display: "block",borderRadius:"50px", background: "red", color: "white" , position:"absolute", padding:"2px", right: "50px"}}/>
       </div>
     )
   }
@@ -46,10 +46,10 @@ const Carousel = ({ data }) => {
     prevArrow: <SamplePrevArrow to="prev" />,
   };
   return (
-    <Slider {...settings} className='max-w-7xl mx-auto '>
+    <Slider {...settings} className=' mx-auto bg-red-50 '>
       {
         data.slice(0, 7).map((item, index) => {
-          return <div key={index} className=''>
+          return <div key={index} className='bg-red-50 -z-10'>
             <div className=' flex flex-col md:flex-row gap-10 justify-center h-[600px] items-center my-20 md:my-0 px-4'>
 
               <div className='space-y-3 md:space-y-6'>
@@ -59,7 +59,7 @@ const Carousel = ({ data }) => {
                 <button className='bg-red-500 text-white px-3 py-2 rounded-md cursor-pointer mt-2' onClick={() => navigate(`/products/${item.id}`)}>Shop Now</button>
               </div>
               <div className=''>
-                <img src={item.image} alt="" className=' rounded-full  w-[550px] hover:scale-105 transition-all shadow-2xl shadow-red-200' onClick={() => navigate(`/products/${item.id}`)} />
+                <img src={item.image} alt="" className=' rounded-full  w-[550px] hover:scale-105 transition-all shadow-2xl shadow-red-400' onClick={() => navigate(`/products/${item.id}`)} />
 
               </div>
             </div>

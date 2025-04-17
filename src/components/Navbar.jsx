@@ -17,7 +17,7 @@ const [openNav, setOpenNav] = useState(false)
   }
 
   return (
-    <div className='bg-gray-100 py-3 shadow-2xl z-50 px-4 md:px-0'>
+    <div className='bg-white py-3 shadow-2xl z-50 px-4 md:px-0'>
       <div className='max-w-6xl mx-auto flex justify-between items-center'>
         {/* logo section */}
         <div className='flex gap-7 items-center'>

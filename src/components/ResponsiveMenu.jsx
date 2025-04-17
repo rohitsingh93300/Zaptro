@@ -20,7 +20,7 @@ const ResponsiveMenu = ({ openNav, setOpenNav }) => {
                     </div>
                 </div>
                 <nav className='mt-12'>
-                    <ul className='flex flex-col gap-7 text-lg font-semibold '>
+                    <ul className='flex flex-col gap-7 text-xl font-semibold '>
                         <Link to="/" onClick={()=>setOpenNav(false)}><li className='cursor-pointer'>Home</li></Link>
                         <Link to="/products" onClick={()=>setOpenNav(false)}><li className='cursor-pointer'>Products</li></Link>
                         <Link to="/about" onClick={()=>setOpenNav(false)}><li className='cursor-pointer' >About</li></Link>

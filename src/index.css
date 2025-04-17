@@ -7,7 +7,7 @@ input {
   color: #333;
 }
 
-option:nth-child(2) :hover {
+/* option:nth-child(2) :hover {
   background-color: red ! important;
   color: #fff;
 }
@@ -15,10 +15,10 @@ option:nth-child(2) :hover {
 .option:active {
   background-color: red ! important;
   color: #fff;
-}
+} */
 
 /* react slick custom arrow navigation */
-.slick-arrow.slick-next,
+/* .slick-arrow.slick-next,
 .slick-arrow.slick-prev {
   background-color: red;
   height: 25px;
@@ -30,30 +30,30 @@ option:nth-child(2) :hover {
   opacity: 0.8;
   height: 30px;
   width: 30px;
-}
+} */
 
-.slick-arrow.slick-next:hover,
+/* .slick-arrow.slick-next:hover,
 .slick-arrow.slick-prev:hover {
   background-color: #f11717;
   opacity: 1;
-}
+} */
 
 
-.slick-prev::before,
+/* .slick-prev::before,
 .slick-next::before {
   display: none;
 
-}
+} */
 
 .arrows {
-  height: 20px;
-  width: 20px;
+  height: 40px;
+  width: 40px;
   margin: 1px;
 
 }
 
 /* clerk user button size adjust */
-.cl-avatarBox {
-  width: 2.75rem;
-  height: 2.75rem;
-}
+/* .cl-avatarBox {
+  width: 3rem;
+  height: 3rem;
+} */
