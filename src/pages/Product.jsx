@@ -107,12 +107,12 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
         <div>
             <div className='max-w-6xl mx-auto px-4'>
                 {/* <h1 className='font-semibold text-4xl mt-10'>All Products</h1> */}
-                <div className={`bg-gray-100 flex justify-between items-center ${openFilter ? "rounded-t-md" : "rounded-md"} px-4 p-2 mt-5 `}>
+                <div className={`bg-gray-100 flex justify-between items-center md:hidden ${openFilter ? "rounded-t-md" : "rounded-md"} px-4 p-2 mt-5 `}>
                     <h1 className='font-semibold text-xl'>Filters</h1>
                     <FaFilter onClick={toggleFilter} />
                 </div>
                 {
-                    openFilter ? <div className='bg-gray-100 p-2'>
+                    openFilter ? <div className='bg-gray-100 p-2 md:hidden'>
                         <input type="text" placeholder='Search...'
                             className='bg-white p-2 rounded-md border-gray-400 border-2 w-full'
                             value={search}
