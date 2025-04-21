@@ -10,6 +10,7 @@ const FilterSection = ({ data, search, setSearch, category, setCategory, brand, 
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+      {/* category only data */}
       <h1 className='mt-5 font-semibold text-xl'>Category</h1>
       <div className='flex flex-col gap-2 mt-3'>
         {
@@ -21,6 +22,7 @@ const FilterSection = ({ data, search, setSearch, category, setCategory, brand, 
           })
         }
       </div>
+      {/* brand only data */}
       <div className='mt-5'>
         <h1 className='mt-5 font-semibold text-xl mb-3'>Brand</h1>
         <select name="" id="" className='bg-white w-full p-2 border-gray-200 border-2 rounded-md form-select'
@@ -46,7 +48,7 @@ const FilterSection = ({ data, search, setSearch, category, setCategory, brand, 
         </div>
       </div>
       <button className='bg-red-500 text-white rounded-md px-3 py-1 mt-5 cursor-pointer'
-       onClick={() => { setSearch(''); setCategory(''); setBrand(''); setPriceRange([0, 5000]) }}
+       onClick={() => { setSearch(''); setCategory('All'); setBrand('All'); setPriceRange([0, 5000]) }}
       >Reset Filters</button>
     </div>
   )

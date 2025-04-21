@@ -24,11 +24,11 @@ const Home = ({ data, setData }) => {
   }, [])
 
   return (
-    <div className='overflow-x-hidden -z-10'>
+    <div className='overflow-x-hidden -z-10 '>
       <Carousel data={data}/>
-      <Features/>
-      {/* <Category data={data}/> */}
+      
       <MidBanner/>
+      <Features/>
     </div>
   )
 }

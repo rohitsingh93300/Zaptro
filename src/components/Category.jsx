@@ -13,15 +13,18 @@ const Category = ({ data }) => {
 
     const categoryOnlyData = getUniqueCategory(data, "category")
     return (
-        <div className='max-w-6xl mx-auto flex justify-around mt-7'>
+    <div className='bg-red-100'>
+
+        <div className='max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-around py-7 px-4'>
             {
                 categoryOnlyData.map((item, index) => {
                     return <div>
-                        <button className='uppercase bg-red-500 text-white px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
+                        <button className='uppercase bg-gray-800 text-white px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
                     </div>
                 })
             }
         </div>
+    </div>
     )
 }
 

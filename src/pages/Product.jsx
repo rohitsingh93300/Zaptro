@@ -10,8 +10,8 @@ import { FaFilter } from "react-icons/fa6";
 const Product = ({ cartItem, setCartItem, data, setData }) => {
 
     const [search, setSearch] = useState("")
-    const [category, setCategory] = useState("")
-    const [brand, setBrand] = useState("")
+    const [category, setCategory] = useState("All")
+    const [brand, setBrand] = useState("All")
     // const [priceRange, setPriceRange] = useState(500)
     const [priceRange, setPriceRange] = useState([0, 5000])
     const [page, setPage] = useState(1);
@@ -44,8 +44,8 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
 
     const filteredData = data.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase()) &&
-        (category === "" || item.category === category) &&
-        (brand === "" || item.brand === brand) &&
+        (category === "All" || item.category === category) &&
+        (brand === "All" || item.brand === brand) &&
         item.price >= priceRange[0] && item.price <= priceRange[1]
     )
 
@@ -90,15 +90,10 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
     }
 
     const handleCategoryChange = (e) => {
-        if (category == "All") {
-            setCategory("")
-            setOpenFilter(false)
-            console.log(e.target.value);
+        setCategory(e.target.value)
+        setOpenFilter(false)
+        console.log(e.target.value);
 
-        } else {
-            setCategory(e.target.value)
-            setOpenFilter(false)
-        }
     }
 
     const categoryOnlyData = getUniqueData(data, "category")
@@ -106,7 +101,7 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
 
     return (
         <div>
-            <div className='max-w-6xl mx-auto px-4'>
+            <div className='max-w-6xl mx-auto px-4 mb-10'>
                 {/* <h1 className='font-semibold text-4xl mt-10'>All Products</h1> */}
                 <div className={`bg-gray-100 flex justify-between items-center md:hidden ${openFilter ? "rounded-t-md" : "rounded-md"} px-4 p-2 mt-5 `}>
                     <h1 className='font-semibold text-xl'>Filters</h1>
