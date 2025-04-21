@@ -149,7 +149,7 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
                                 </div>
                             </div>
                             <button className='bg-red-500 text-white rounded-md px-3 py-1 mt-5 cursor-pointer'
-                                onClick={() => { setSearch(''); setCategory(''); setBrand(''); setPriceRange([0, 5000]); setOpenFilter(false) }}
+                                onClick={() => { setSearch(''); setCategory('All'); setBrand('All'); setPriceRange([0, 5000]); setOpenFilter(false) }}
                             >Reset Filters</button>
                         </div>
                     </div> : ""

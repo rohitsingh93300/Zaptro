@@ -55,6 +55,7 @@ const SingleProduct = ({cartItem, setCartItem}) => {
   }
   useEffect(() => {
     getSingleProduct()
+    window.scrollTo(0,0);
   }, [])
 
   const OriginalPrice = Math.round(singleProduct.price + (singleProduct.price * singleProduct.discount / 100))

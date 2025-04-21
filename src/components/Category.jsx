@@ -19,7 +19,7 @@ const Category = ({ data }) => {
             {
                 categoryOnlyData.map((item, index) => {
                     return <div>
-                        <button className='uppercase bg-gray-100  px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
+                        <button className='uppercase bg-gradient-to-r from-red-500 to-purple-500 text-white  px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
                     </div>
                 })
             }
