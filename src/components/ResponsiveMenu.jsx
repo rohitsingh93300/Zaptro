@@ -35,7 +35,7 @@ const ResponsiveMenu = ({ openNav, setOpenNav }) => {
                     </ul>
                 </nav>
             </div>
-            <div className=''>
+            <div className='pb-20'>
                 <h1>
                     Made with ❤️ by Rohit
                 </h1>

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Breadcrums from "../components/Breadcrums";
 import Loading from "../assets/Loading4.webm"
 import { toast } from "react-toastify";
+import { IoCartOutline } from "react-icons/io5";
 
 
 const SingleProduct = ({cartItem, setCartItem}) => {
@@ -75,7 +76,7 @@ const SingleProduct = ({cartItem, setCartItem}) => {
 
           {/* Product Details */}
           <div className="flex flex-col gap-6">
-            <h1 className="text-3xl font-bold text-gray-800">{singleProduct.title}</h1>
+            <h1 className="md:text-3xl text-xl font-bold text-gray-800">{singleProduct.title}</h1>
             <div className="text-gray-700">{singleProduct.brand?.toUpperCase()} /{singleProduct.category?.toUpperCase()} /{singleProduct.model}</div>
             <p className="text-xl text-red-500 font-bold ">${singleProduct.price} <span className="line-through text-gray-700">${OriginalPrice}</span> <span className="bg-red-500 text-white p-2 rounded-md">{singleProduct.discount}% discount</span></p>
             <p className="text-gray-600">
@@ -96,7 +97,8 @@ const SingleProduct = ({cartItem, setCartItem}) => {
 
             {/* Buttons */}
             <div className="flex gap-4 mt-4">
-              <button onClick={()=>addToCart(singleProduct)} className="px-6 py-2 text-lg bg-red-500 text-white rounded-md">
+              <button onClick={()=>addToCart(singleProduct)} className="px-6 flex gap-2 py-2 text-lg bg-red-500 text-white rounded-md">
+                <IoCartOutline className='w-6 h-6'/>
                 Add to Cart
               </button>
             </div>

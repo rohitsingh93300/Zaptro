@@ -40,6 +40,7 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
     useEffect(() => {
         fetchAllProducts()
         handlePaginationBug()
+        window.scrollTo(0,0);
     }, [])
 
     const filteredData = data.filter((item) =>
@@ -75,10 +76,7 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
 
     const pageHandler = (selectedPage) => {
         setPage(selectedPage)
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
+        window.scrollTo(0,0);
     }
 
     const getUniqueData = (data, property) => {
