@@ -13,13 +13,13 @@ const Category = ({ data }) => {
 
     const categoryOnlyData = getUniqueCategory(data, "category")
     return (
-    <div className='bg-red-100'>
+    <div className=' bg-[#101829]'>
 
-        <div className='max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-around py-7 px-4'>
+        <div className='max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-center md:justify-around py-7 px-4'>
             {
                 categoryOnlyData.map((item, index) => {
                     return <div>
-                        <button className='uppercase bg-gray-800 text-white px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
+                        <button className='uppercase bg-gray-100  px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
                     </div>
                 })
             }
