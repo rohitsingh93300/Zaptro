@@ -6,37 +6,16 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useUser } from '@clerk/clerk-react';
 import emptyCart from "../assets/empty-cart.png"
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 
-const Cart = ({ cartItem, setCartItem, location, getLocation }) => {
+const Cart = ({  location, getLocation }) => {
+    const {cartItem, setCartItem, updateQuantity, deleteItem} = useCart()
     const { user } = useUser()
     const navigate = useNavigate()
 
     console.log(user);
 
-    const updateQuantity = (cartItem, productId, action) => {
-        setCartItem(cartItem.map(item => {
-            if (item.id === productId) {
-                let newUnit = item.quantity;
-                if (action === "increase") {
-                    newUnit = newUnit + 1
-                } else if (action === "decrease") {
-                    newUnit = newUnit - 1
-                }
-                return newUnit > 0 ? { ...item, quantity: newUnit } : null;
-            }
-            return item;
-        }).filter(item => item != null) // remove items with quantity 0
-        )
-
-
-    }
-
-
-
-
-    const deleteItem = (productId) => {
-        setCartItem(cartItem.filter(item => item.id !== productId))
-    }
+   
     const totalPrice = cartItem.reduce((total, item) => total + item.price * item.quantity, 0)
     return (
         <div className='mt-10 max-w-6xl mx-auto px-4 md:px-0 mb-5'>

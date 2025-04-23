@@ -1,10 +1,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import { getData } from '../context/DataContext';
 
-const Category = ({ data }) => {
+const Category = () => {
     const navigate = useNavigate()
+    const {data} = getData()
+
     const getUniqueCategory = (data, property) => {
-        let newVal = data.map((curElem) => {
+        let newVal = data?.map((curElem) => {
             return curElem[property];
         });
         newVal = [...new Set(newVal)]
@@ -18,7 +21,7 @@ const Category = ({ data }) => {
         <div className='max-w-7xl mx-auto flex flex-wrap gap-4 items-center justify-center md:justify-around py-7 px-4'>
             {
                 categoryOnlyData.map((item, index) => {
-                    return <div>
+                    return <div key={index}>
                         <button className='uppercase bg-gradient-to-r from-red-500 to-purple-500 text-white  px-3 py-1 rounded-md cursor-pointer' onClick={()=>navigate(`/category/${item}`)}>{item}</button>
                     </div>
                 })

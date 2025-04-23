@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
-const FilterSection = ({ data, search, setSearch, category, setCategory, brand, setBrand, priceRange, setPriceRange,getUniqueData, categoryOnlyData, brandOnlyData, handleCategoryChange }) => {
+const FilterSection = ({search, setSearch, category, setCategory, brand, setBrand, priceRange, setPriceRange, categoryOnlyData, brandOnlyData, handleCategoryChange, handleBrandChange }) => {
 
 
   return (
@@ -27,7 +27,7 @@ const FilterSection = ({ data, search, setSearch, category, setCategory, brand, 
         <h1 className='mt-5 font-semibold text-xl mb-3'>Brand</h1>
         <select name="" id="" className='bg-white w-full p-2 border-gray-200 border-2 rounded-md form-select'
           value={brand}
-          onChange={(e) => setBrand(e.target.value)}
+          onChange={handleBrandChange}
         >
           {
             brandOnlyData.map((item, index) => {

@@ -3,43 +3,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Breadcrums from "../components/Breadcrums";
 import Loading from "../assets/Loading4.webm"
-import { toast } from "react-toastify";
 import { IoCartOutline } from "react-icons/io5";
+import { useCart } from "../context/CartContext";
 
 
-const SingleProduct = ({cartItem, setCartItem}) => {
+const SingleProduct = () => {
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState("")
+  const {addToCart} = useCart()
   const params = useParams()
-
-    // useEffect(() => {
-    //     const storedCart = localStorage.getItem("cart");
-    //     if (storedCart) {
-    //       setCartItem(storedCart);
-    //     }
-    //   }, []);
-
-    const addToCart = (product)=>{
-      // setCartItem([...cartItem, item])
-      const itemInCart = cartItem.find((item) => item.id === product.id);
-      if (itemInCart) {
-        // Increase quantity if already in cart
-        const updatedCart = cartItem.map((item) =>
-          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-        );
-        setCartItem(updatedCart);
-        toast.warn("Product is already in the cart")
-      } else {
-        // Add new item with quantity 1
-        setCartItem([...cartItem, { ...product, quantity: 1 }]);
-        toast.success("Product is added to cart")
-      }
-      console.log(cartItem);
-      
-             
-  }
-
-  
 
   const getSingleProduct = async () => {
     try {

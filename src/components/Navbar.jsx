@@ -7,10 +7,12 @@ import { CgClose } from 'react-icons/cg';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
 import { HiMenuAlt1, HiMenuAlt3 } from 'react-icons/hi';
 import ResponsiveMenu from './ResponsiveMenu';
+import { useCart } from '../context/CartContext';
 
-const Navbar = ({ location, cartItem, getLocation, openDropdown, setOpenDropdown }) => {
+const Navbar = ({ location, getLocation, openDropdown, setOpenDropdown }) => {
 
 const [openNav, setOpenNav] = useState(false)
+const {cartItem} = useCart()
 
   const toggleDropdown = () => {
     setOpenDropdown(!openDropdown)

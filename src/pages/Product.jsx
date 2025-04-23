@@ -6,32 +6,25 @@ import FilterSection from '../components/FilterSection';
 import notfound from "../assets/notfound.json"
 import Lottie from 'lottie-react';
 import { FaFilter } from "react-icons/fa6";
+import { useCart } from '../context/CartContext';
+import { getData } from '../context/DataContext';
+import Pagination from '../components/Pagination';
 
-const Product = ({ cartItem, setCartItem, data, setData }) => {
+const Product = () => {
 
     const [search, setSearch] = useState("")
     const [category, setCategory] = useState("All")
     const [brand, setBrand] = useState("All")
-    // const [priceRange, setPriceRange] = useState(500)
     const [priceRange, setPriceRange] = useState([0, 5000])
     const [page, setPage] = useState(1);
     const [openFilter, setOpenFilter] = useState(false)
+    const { fetchAllProducts, data } = getData()
+    const { cartItem } = useCart()
 
     const toggleFilter = () => {
         setOpenFilter(!openFilter)
     }
 
-    const fetchAllProducts = async () => {
-        try {
-            const res = await axios.get('https://fakestoreapi.in/api/products?limit=150')
-            const userData = res.data.products
-            console.log(userData);
-            setData(userData)
-        } catch (error) {
-            console.log(error);
-
-        }
-    }
     const handlePaginationBug = () => {
         if (page > dynamicPage) {
             setPage(1)
@@ -40,10 +33,10 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
     useEffect(() => {
         fetchAllProducts()
         handlePaginationBug()
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [])
 
-    const filteredData = data.filter((item) =>
+    const filteredData = data?.filter((item) =>
         item.title.toLowerCase().includes(search.toLowerCase()) &&
         (category === "All" || item.category === category) &&
         (brand === "All" || item.brand === brand) &&
@@ -52,35 +45,17 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
 
 
 
-    const dynamicPage = Math.ceil(filteredData.length / 8)
+    const dynamicPage = Math.ceil(filteredData?.length / 8)
 
-    const getPages = (current, total) => {
-        const pages = [];
 
-        if (total <= 5) {
-            for (let i = 1; i <= total; i++) {
-                pages.push(i);
-            }
-        } else {
-            if (current <= 3) {
-                pages.push(1, 2, 3, '...', total);
-            } else if (current >= total - 2) {
-                pages.push(1, '...', total - 2, total - 1, total);
-            } else {
-                pages.push(1, '...', current - 1, current, current + 1, '...', total);
-            }
-        }
-
-        return pages;
-    }
 
     const pageHandler = (selectedPage) => {
         setPage(selectedPage)
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     const getUniqueData = (data, property) => {
-        let newVal = data.map((curElem) => {
+        let newVal = data?.map((curElem) => {
             return curElem[property];
         });
         newVal = ["All", ...new Set(newVal)]
@@ -89,9 +64,14 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
 
     const handleCategoryChange = (e) => {
         setCategory(e.target.value)
+        setPage(1)
         setOpenFilter(false)
-        console.log(e.target.value);
+    }
 
+    const handleBrandChange = (e) => {
+        setBrand(e.target.value)
+        setPage(1)
+        setOpenFilter(false)
     }
 
     const categoryOnlyData = getUniqueData(data, "category")
@@ -127,7 +107,7 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
                             <h1 className='mt-5 font-semibold text-xl mb-3'>Brand</h1>
                             <select name="" id="" className='bg-white w-full p-2 border-gray-200 border-2 rounded-md form-select'
                                 value={brand}
-                                onChange={(e) => { setBrand(e.target.value), setOpenFilter(false) }}
+                                onChange={handleBrandChange}
                             >
                                 {
                                     brandOnlyData.map((item, index) => {
@@ -153,9 +133,9 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
                     </div> : ""
                 }
                 {
-                    data.length > 0 ? (
+                    data?.length > 0 ? (
                         <div className='flex gap-8'>
-                            <FilterSection cartItem={cartItem} data={data} search={search} setSearch={setSearch} category={category} setCategory={setCategory} brand={brand} setBrand={setBrand} priceRange={priceRange} setPriceRange={setPriceRange} getUniqueData={getUniqueData} categoryOnlyData={categoryOnlyData} brandOnlyData={brandOnlyData} handleCategoryChange={handleCategoryChange} />
+                            <FilterSection cartItem={cartItem} data={data} search={search} setSearch={setSearch} category={category} setCategory={setCategory} brand={brand} setBrand={setBrand} priceRange={priceRange} setPriceRange={setPriceRange} getUniqueData={getUniqueData} categoryOnlyData={categoryOnlyData} brandOnlyData={brandOnlyData} handleCategoryChange={handleCategoryChange} handleBrandChange={handleBrandChange} />
                             <div>
                                 {
                                     filteredData.length > 0 ? (
@@ -164,30 +144,11 @@ const Product = ({ cartItem, setCartItem, data, setData }) => {
                                                 {
 
                                                     filteredData.slice(page * 8 - 8, page * 8).map((product, index) => {
-                                                        return <ProductCard key={index} product={product} cartItem={cartItem} setCartItem={setCartItem} />
+                                                        return <ProductCard key={index} product={product} />
                                                     })
                                                 }
                                             </div>
-                                            <div className='mt-10 space-x-4 '>
-                                                <button disabled={page === 1} className={`${page === 1 ? "bg-red-400" : "bg-red-500"} text-white px-3 py-1 rounded-md cursor-pointer`} onClick={() => pageHandler(page - 1)}>Prev</button>
-                                                {
-                                                    // [...Array(dynamicPage)].map((_, i) => {
-                                                    //     return <span key={i} onClick={() => pageHandler(i + 1)} className={`${page === i + 1 ? "font-bold" : ""} cursor-pointer`}>{i + 1}</span>
-                                                    // })
-                                                    getPages(page, dynamicPage).map((item, index) => {
-                                                        return (
-                                                            <span
-                                                                key={index}
-                                                                onClick={() => typeof item === "number" && pageHandler(item)}
-                                                                className={`cursor-pointer ${item === page ? "font-bold text-red-600" : ""}`}
-                                                            >
-                                                                {item}
-                                                            </span>
-                                                        );
-                                                    })
-                                                }
-                                                <button disabled={page === dynamicPage} className={`${page === dynamicPage ? "bg-red-400" : "bg-red-500"} text-white px-3 py-1 rounded-md cursor-pointer`} onClick={() => pageHandler(page + 1)}>Next</button>
-                                            </div>
+                                            <Pagination pageHandler={pageHandler} page={page} dynamicPage={dynamicPage} />
                                         </div>
 
 

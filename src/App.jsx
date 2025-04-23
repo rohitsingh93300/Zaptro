@@ -13,16 +13,15 @@ import { useUser } from '@clerk/clerk-react';
 import axios from 'axios'
 import Footer from './components/Footer'
 import Search from './pages/Search'
+import { useCart } from './context/CartContext'
 // import axios from 'axios'
 
 
 const App = () => {
-  const [data, setData] = useState([])
-  const [cartItem, setCartItem] = useState([])
   const [location, setLocation] = useState("")
   const [openDropdown, setOpenDropdown] = useState(false)
   const { user, isLoaded, isSignedIn } = useUser();
-  // const [user, setUser] = useState(false)
+  const {cartItem, setCartItem} = useCart()
 
   const getLocation = async () => {
     navigator.geolocation.getCurrentPosition(async pos => {
@@ -59,18 +58,18 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Navbar cartItem={cartItem} user={user} getLocation={getLocation} location={location} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
+        <Navbar user={user} getLocation={getLocation} location={location} openDropdown={openDropdown} setOpenDropdown={setOpenDropdown} />
         <Routes>
-          <Route path='/' element={<Home data={data} setData={setData}/>}></Route>
-          <Route path='/products' element={<Product cartItem={cartItem} setCartItem={setCartItem} data={data} setData={setData}/>}></Route>
-          <Route path='/products/:id' element={<SingleProduct cartItem={cartItem} setCartItem={setCartItem} />}></Route>
+          <Route path='/' element={<Home/>}></Route>
+          <Route path='/products' element={<Product/>}></Route>
+          <Route path='/products/:id' element={<SingleProduct  />}></Route>
           <Route path='/about' element={<About />}></Route>
           <Route path='/contact' element={<Contact />}></Route>
           <Route path='/login' element={<Login />}></Route>
           <Route path='/category/:category' element={<Search />}></Route>
           <Route path='/cart' element={
             <ProtectedRoutes user={user}>
-              <Cart cartItem={cartItem} setCartItem={setCartItem} location={location} getLocation={getLocation}/>
+              <Cart location={location} getLocation={getLocation}/>
             </ProtectedRoutes>
           }></Route>
 

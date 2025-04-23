@@ -6,6 +6,8 @@ import { ClerkProvider } from '@clerk/clerk-react'
 import { ToastContainer } from 'react-toastify';
 import { ChevronUp } from 'lucide-react';
 import ScrollToTop from 'react-scroll-to-top'
+import { CartProvider } from './context/CartContext.jsx'
+import { DataProvider } from './context/DataContext.jsx'
 
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
@@ -16,6 +18,8 @@ if (!PUBLISHABLE_KEY) {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <DataProvider>
+    <CartProvider>
     <ClerkProvider publishableKey={PUBLISHABLE_KEY} afterSignOutUrl="/">
       <div className='relative'>
         <App />
@@ -37,5 +41,7 @@ createRoot(document.getElementById('root')).render(
       </div>
 
     </ClerkProvider>
+    </CartProvider>
+    </DataProvider>
   </StrictMode>,
 )
