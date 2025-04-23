@@ -6,9 +6,7 @@ const ProductListView = ({ product }) => {
     const navigate = useNavigate()
     const {addToCart} = useCart()
 
-    useEffect(()=>{
-        window.scrollTo(0, 0);
-    },[])
+ 
     return (
 
         <div className='space-y-4 mt-2 rounded-md '>
